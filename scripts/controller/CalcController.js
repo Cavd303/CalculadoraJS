@@ -2,25 +2,66 @@
     
     constructor() {
 
-        this._displayCalc = "0";
-        this._dataAtual; 
+        this._locale = 'pt-BR';
+        this._displayCalcEl = document.querySelector('#display');
+        this._dateEl = document.querySelector('#data');
+        this._timeEl = document.querySelector('#hora');
+        this._currentDate; 
+        this.initialize();
 
+    }
+
+    initialize() {
+        this.displayCalc = 0;
+        this.setDisplayDateTime();
+        let interval = setInterval(()=>{
+          this.setDisplayDateTime();
+        }, 1000);
+    }
+
+    initButtonsEvents() {
+        let buttons = document.querySelectorAll("#buttons > g, #parts > g");
+    }
+
+    setDisplayDateTime() {
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale, 
+            {day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
     }
 
     get displayCalc() {
-        return this._displayCalc;
+        return this._displayCalcEl.innerHTML;
     }
 
     set displayCalc(displayCalc) {
-        this._displayCalc = displayCalc;
+        this._displayCalcEl.innerHTML = displayCalc;
+    }
+
+    get displayTime() {
+        return this._timeEl.innerHTML;
+    }
+
+    set displayTime(time) {
+        this._timeEl.innerHTML = time;
+    }
+
+    get displayDate() {
+        return this._dateEl.innerHTML;
+    }
+
+    set displayDate(date) {
+        this._dateEl.innerHTML = date;
     }
 
 
-    get dataAtual() {
-        return this.dataAtual;
+    get currentDate() {
+        return new Date();
     }
 
-    set dataAtual(dataAtual) {
-        this.dataAtual = dataAtual;
+    set currentDate(currentDate) {
+        this._currentDate = currentDate;
     }
 }
