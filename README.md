@@ -1,2 +1,4 @@
-# CalculadoraJS
-Criação de uma calculadora com javascript
+# CalculatorJS
+
+Calculator web whith javascript interactions.
+
